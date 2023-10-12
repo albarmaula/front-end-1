@@ -2,26 +2,55 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background-color: rgb(243, 243, 243);
+  
+}
+
+h1 {
+  font-size: 40px;
+  font-family: 'Radiance';
+  font-weight: bold;
+  color: #333;
+}
+
+label {
+  font-family: 'Radiance';
+}
+
+input {
+  font-family: 'Radiance';
+}
+
+button {
+  font-family: 'Radiance';
+}
+
+ul {
+  font-family: 'Radiance';
+  font-size: 20px;
+}
+
+.footer {
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Radiance';
+}
+
+.header {
+  color: #fff;
+  padding: 10px;
+  font-family: 'Radiance';
+  font-size: larger;
+}
+
+.content {
+  padding: 30px;
+  margin-left: 10px;
+  width: 100%;
+}
+
+.navbar-links {
+  background-color: gray;
 }
