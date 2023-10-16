@@ -35,7 +35,22 @@ export default function LoginPage() {
         sx={{ display: "flex", flexWrap: "wrap" }}
         className="bg-white shadow-md p-8 rounded-lg w-80 bg-gray-800 justify-center"
       >
-        <h1 className="font-semibold text-center mb-4 text-gray-800">Login</h1>
+        <h1 className="font-semibold text-center mb-4 text-gray-800">Sign Up</h1>
+        <TextField
+          sx={{ m: 1, width: "25ch" }}
+          variant="outlined"
+          label="Username"
+          className="w-full border rounded px-3 py-2 text-gray-800 border-gray-800"
+        >
+          <OutlinedInput
+            id="outlined-adornment-username"
+            endAdornment={<InputAdornment>Username</InputAdornment>}
+            aria-describedby="outlined-weight-helper-text"
+            inputProps={{
+              Radiance: "weight",
+            }}
+          />
+        </TextField>
         <TextField
           sx={{ m: 1, width: "25ch" }}
           variant="outlined"
@@ -43,7 +58,7 @@ export default function LoginPage() {
           className="w-full border rounded px-3 py-2 text-gray-800 border-gray-800"
         >
           <OutlinedInput
-            id="outlined-adornment-weight"
+            id="outlined-adornment-email"
             endAdornment={<InputAdornment>Email</InputAdornment>}
             aria-describedby="outlined-weight-helper-text"
             inputProps={{
@@ -83,15 +98,15 @@ export default function LoginPage() {
           size="large"
           href="../pages/home"
         >
-          Login
+          Sign Up
         </Button>
         <p className="mt-3">
-          Don't have account?{" "}
+          Already have account?{" "}
           <Link
-            href="/signUp"
+            href="../"
             style={linkStyle}
           >
-            Sign Up
+            Login
           </Link>
           .
         </p>

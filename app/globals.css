@@ -14,15 +14,17 @@ h1 {
   color: #333;
 }
 
+p {
+  font-family: 'Radiance';
+  color: #333;
+}
+
 label {
   font-family: 'Radiance';
 }
 
-input {
-  font-family: 'Radiance';
-}
 
-button {
+Button, Input {
   font-family: 'Radiance';
 }
 
