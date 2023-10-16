@@ -19,6 +19,11 @@ p {
   color: #333;
 }
 
+Typography {
+  font-family: 'Radiance';
+  color: #333;
+}
+
 label {
   font-family: 'Radiance';
 }
