@@ -22,19 +22,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
 import Paper from "@mui/material/Paper";
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="#333" align="center" {...props} className="mt-3">
-      {"Copyright © "}
-      <Link color="inherit" href="#">
-        Widaad's App. RPL. 1201200022.
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -74,16 +61,35 @@ export default function SignUpPage() {
         
         <Grid
           item
+          xs={false}
+          sm={4}
+          md={7}
+          sx={{
+            backgroundImage:
+              "url(https://source.unsplash.com/random?wallpapers)",
+            backgroundRepeat: "no-repeat",
+            backgroundColor: (t) =>
+              t.palette.mode === "light"
+                ? t.palette.grey[50]
+                : t.palette.grey[900],
+          }}
+          style={{
+            borderTopLeftRadius: "0.5rem",
+            borderBottomLeftRadius: "0.5rem",
+          }}
+        />
+        <Grid
+          item
           xs={12}
           sm={8}
           md={5}
           component={Paper}
           elevation={6}
           square
-          className="bg-white shadow-md pl-10 pr-10 pt-1 pb-1"
+          className="bg-white shadow-md pl-10 pr-10 pt-3 pb-3"
           style={{
-            borderTopLeftRadius: "0.5rem",
-            borderBottomLeftRadius: "0.5rem",
+            borderTopRightRadius: "0.5rem",
+            borderBottomRightRadius: "0.5rem",
           }}
         >
           <Box
@@ -188,29 +194,9 @@ export default function SignUpPage() {
                 </Link>
               </Grid>
             </Grid>
-            <Copyright/>
           </Box>
           
         </Grid>
-        <Grid
-          item
-          xs={false}
-          sm={4}
-          md={7}
-          sx={{
-            backgroundImage:
-              "url(https://source.unsplash.com/random?wallpapers)",
-            backgroundRepeat: "no-repeat",
-            backgroundColor: (t) =>
-              t.palette.mode === "light"
-                ? t.palette.grey[50]
-                : t.palette.grey[900],
-          }}
-          style={{
-            borderTopRighttRadius: "0.5rem",
-            borderBottomRightRadius: "0.5rem",
-          }}
-        />
       </Grid>
     </div>
   );

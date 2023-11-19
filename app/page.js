@@ -22,19 +22,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
 import Paper from "@mui/material/Paper";
 
-function Copyright(props) {
-  return (
-    <Typography variant="body2" color="#333" align="center" {...props} className="mt-20">
-      {"Copyright © "}
-      <Link color="inherit" href="#">
-        Widaad's App. RPL. 1201200022.
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
-
 export default function SignInPage() {
   const [showPassword, setShowPassword] = useState(false);
 
@@ -191,7 +178,6 @@ export default function SignInPage() {
               </Grid>
             </Grid>
           </Box>
-          <Copyright/>
         </Grid>
       </Grid>
     </div>

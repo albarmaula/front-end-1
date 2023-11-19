@@ -19,7 +19,7 @@ function PageName({ title }) {
   // Parameter bernama title
   return (
     <div id="page_name" className="mt-2">
-      <h2>Home</h2>
+      <h2>My Schedule</h2>
     </div>
   );
 }
