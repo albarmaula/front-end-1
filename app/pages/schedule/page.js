@@ -35,6 +35,12 @@ function Content() {
         My Schedule
       </Link>
       <Paper elevation={3} style={styles.paper}>
+        <Link
+          href="#"
+          className="flex justify-center text-white bg-gray-800 hover:bg-gray-400 hover:text-gray-800"
+        >
+          <AddCircleOutlineIcon className="mr-2" />
+        </Link>
         <Table>
           <TableHead>
             <TableRow>
@@ -292,149 +298,6 @@ function Content() {
           </TableBody>
         </Table>
       </Paper>
-
-      <Grid container spacing={2} className="mt-[-30px]">
-        <Grid item xs={12} sm={9}>
-          <Link
-            href="/pages/task"
-            className="mb-[-5px] flex justify-center hover:text-gray-400 p-2 m-[20px]"
-          >
-            <AssignmentTurnedInIcon className="mr-2" />
-            My Tasks
-          </Link>
-
-          <Paper elevation={3} style={styles.paperBot}>
-            <Link
-              href="#"
-              className="flex justify-center text-white bg-gray-800 hover:bg-gray-400 hover:text-gray-800"
-            >
-              <AddCircleOutlineIcon className="mr-2" />
-            </Link>
-            <Table className="h-[300px]">
-              <TableHead>
-                <TableRow>
-                  <TableCell style={styles.topHeader}>Task Name</TableCell>
-                  <TableCell style={styles.topHeader}>Deadline</TableCell>
-                  <TableCell style={styles.topHeader}>Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Task 1</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 2</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 3</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 4</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 1</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Paper>
-        </Grid>
-
-        <Grid item xs={12} sm={3}>
-          <Link
-            href="/pages/note"
-            className="mb-[-5px] flex justify-center hover:text-gray-400 p-2 m-[20px]"
-          >
-            <NoteAddIcon className="mr-2" />
-            Note
-          </Link>
-          <Paper elevation={3} style={styles.paperBot}>
-            <Link
-              href="#"
-              className="flex justify-center text-white bg-gray-800 hover:bg-gray-400 hover:text-gray-800"
-            >
-              <AddCircleOutlineIcon className="mr-2" />
-            </Link>
-            <Table className="h-[300px]">
-              <TableHead>
-                <TableRow>
-                  <TableCell style={styles.topHeader}>Title</TableCell>
-                  <TableCell style={styles.topHeader}>Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Note 1</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Edit
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Paper>
-        </Grid>
-      </Grid>
     </div>
   );
 }

@@ -1,5 +1,6 @@
 "use client";
-import React from "react";
+// import React from "react";
+import React, { useState } from 'react';
 import Avatar from "@mui/material/Avatar";
 import CycloneRoundedIcon from "@mui/icons-material/CycloneRounded";
 import HomeIcon from "@mui/icons-material/Home";
@@ -10,6 +11,17 @@ import NoteAddIcon from "@mui/icons-material/NoteAdd";
 import Link from "next/link";
 
 export default function PagesLayout({ children }) {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    if (isNavOpen) {
+      closeNav();
+    } else {
+      openNav();
+    }
+    setIsNavOpen(!isNavOpen);
+  };
+
   const openNav = () => {
     document.getElementById("mySidebar").style.width = "250px";
     document.getElementById("main").style.marginLeft = "250px";
@@ -25,9 +37,6 @@ export default function PagesLayout({ children }) {
   return (
     <>
       <div id="mySidebar" className="sidebar">
-        <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>
-          ×
-        </a>
         <Link href="/pages/home" className="px-4">
           <HomeIcon className="mr-2" />
           Home
@@ -51,9 +60,10 @@ export default function PagesLayout({ children }) {
       </div>
 
       <div id="main" className="header h-16 flex items-center bg-gray-800">
-        <button className="openbtn" onClick={openNav}>
-          ☰
-        </button>
+
+      <button className="openbtn" onClick={toggleNav}>
+        {isNavOpen ? 'X' : '☰'}
+      </button>
         <Avatar sx={{ m: 1 }} className="ml-5 bg-white text-gray-800">
           <CycloneRoundedIcon />
         </Avatar>
@@ -63,8 +73,8 @@ export default function PagesLayout({ children }) {
         {children}
       </div>
 
-      <div className="min-h-screen flex flex-col">
-        <footer className="footer bg-gray-800 mt-auto">
+      <div className=" flex flex-col">
+        <footer className="footer bg-gray-800 mt-[50px]">
           &copy; Ini punya Widaad Albar Maula. RPL. 1201200022
         </footer>
       </div>

@@ -93,25 +93,13 @@ ul {
   color: #1F2937;
 }
 
-.sidebar .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
-}
-
-.sidebar .closebtn:hover {
-  background-color: #1f293700;
-  color: #f38383;
-}
-
 .openbtn {
   font-size: 20px;
   cursor: pointer;
   color: white;
   padding: 8px 12px;
   border-radius: 10px;
+  width: 50px;
 }
 
 .openbtn:hover {
