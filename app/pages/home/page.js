@@ -10,15 +10,17 @@ import Link from "next/link";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
 import FolderIcon from "@mui/icons-material/Folder";
-import NoteAddIcon from "@mui/icons-material/NoteAdd";
+import NoteAltIcon from "@mui/icons-material/NoteAlt";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import Button from "@mui/material/Button";
 import { Grid } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
 
 function PageName({ title }) {
   // Parameter bernama title
   return (
-    <div id="page_name" className="mt-2">
+    <div id="page_name" className="mt-2 flex">
+      <HomeIcon />
       <h2>Home</h2>
     </div>
   );
@@ -49,66 +51,6 @@ function Content() {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>00.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>01.00</TableCell>
-              <TableCell>Data 1</TableCell>
-              <TableCell>Data 2</TableCell>
-              <TableCell>Data 3</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 3</TableCell>
-              <TableCell>Data 3</TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>02.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>03.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>04.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>05.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
             <TableRow>
               <TableCell style={{ ...styles.leftHeader }}>06.00</TableCell>
               <TableCell>Data 4</TableCell>
@@ -259,36 +201,6 @@ function Content() {
               <TableCell>Data 6</TableCell>
               <TableCell>Data 6</TableCell>
             </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>21.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>22.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>23.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
           </TableBody>
         </Table>
       </Paper>
@@ -304,12 +216,6 @@ function Content() {
           </Link>
 
           <Paper elevation={3} style={styles.paperBot}>
-            <Link
-              href="#"
-              className="flex justify-center text-white bg-gray-800 hover:bg-gray-400 hover:text-gray-800"
-            >
-              <AddCircleOutlineIcon className="mr-2" />
-            </Link>
             <Table className="h-[300px]">
               <TableHead>
                 <TableRow>
@@ -399,16 +305,10 @@ function Content() {
             href="/pages/note"
             className="mb-[-5px] flex justify-center hover:text-gray-400 p-2 m-[20px]"
           >
-            <NoteAddIcon className="mr-2" />
+            <NoteAltIcon className="mr-2" />
             Note
           </Link>
           <Paper elevation={3} style={styles.paperBot}>
-            <Link
-              href="#"
-              className="flex justify-center text-white bg-gray-800 hover:bg-gray-400 hover:text-gray-800"
-            >
-              <AddCircleOutlineIcon className="mr-2" />
-            </Link>
             <Table className="h-[300px]">
               <TableHead>
                 <TableRow>
