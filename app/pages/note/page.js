@@ -4,7 +4,7 @@ import { Button, Container, Dialog, DialogActions, DialogContent, DialogTitle, G
 
 export default function NotesPage () {
   const [notes, setNotes] = useState([]);
-  const [newNote, setNewNote] = useState({ title: "", content: "" });
+  const [newNote, setNewNote] = useState({ title: "", content: "", color: getRandomColor() });
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [selectedNote, setSelectedNote] = useState(null);
 
@@ -24,11 +24,11 @@ export default function NotesPage () {
       updatedNotes[selectedNote] = newNote;
       setNotes(updatedNotes);
     } else {
-      // Add new note
-      setNotes([...notes, newNote]);
+      // Add new note with a random color
+      setNotes([...notes, { ...newNote, color: getRandomColor() }]);
     }
 
-    setNewNote({ title: "", content: "" });
+    setNewNote({ title: "", content: "", color: getRandomColor() });
     closeForm();
   };
 
@@ -37,6 +37,15 @@ export default function NotesPage () {
     setNewNote(notes[index]);
     openForm();
   };
+
+  function getRandomColor() {
+    const letters = "0123456789ABCDEF";
+    let color = "#";
+    for (let i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }
 
   return (
     <Container maxWidth="md" mt={8}>
@@ -48,12 +57,25 @@ export default function NotesPage () {
           <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
             <div
               onClick={() => openNoteEditor(index)}
-              className={`bg-yellow-100 p-4 rounded-md border border-yellow-200 cursor-pointer ${
-                selectedNote === index ? "ring-2 ring-yellow-500" : ""
-              }`}
+              className={`p-4 rounded-md border cursor-pointer`}
+              style={{ backgroundColor: note.color }}
             >
-              <h2 className="text-lg font-semibold mb-2">{note.title}</h2>
-              <p className="truncate">{note.content}</p>
+              <h2
+                className="text-lg font-semibold mb-2 overflow-hidden"
+                style={{ maxHeight: "2.5em" }} // Adjust the value as needed
+              >
+                {note.title}
+              </h2>
+              <p
+                className="overflow-hidden"
+                style={{
+                  display: "-webkit-box",
+                  WebkitBoxOrient: "vertical",
+                  WebkitLineClamp: 6,
+                }}
+              >
+                {note.content}
+              </p>
             </div>
           </Grid>
         ))}
@@ -86,7 +108,7 @@ export default function NotesPage () {
           <TextareaAutosize
             aria-label="Content"
             placeholder="Content"
-            minRows={4}
+            minRows={6}
             maxRows={8}
             style={{ width: "100%", resize: "none", padding: "8px" }}
             value={newNote.content}
