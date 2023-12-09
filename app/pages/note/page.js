@@ -1,480 +1,105 @@
-"use client";
-import React from "react";
-import Table from "@mui/material/Table";
-import TableHead from "@mui/material/TableHead";
-import TableBody from "@mui/material/TableBody";
-import TableRow from "@mui/material/TableRow";
-import TableCell from "@mui/material/TableCell";
-import Paper from "@mui/material/Paper";
-import Link from "next/link";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import AssignmentTurnedInIcon from "@mui/icons-material/AssignmentTurnedIn";
-import FolderIcon from "@mui/icons-material/Folder";
-import NoteAddIcon from "@mui/icons-material/NoteAdd";
-import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
-import Button from "@mui/material/Button";
-import { Grid } from "@mui/material";
+"use client"
+import { useState } from "react";
+import { Button, Container, Dialog, DialogActions, DialogContent, DialogTitle, Grid, TextareaAutosize, TextField } from "@mui/material";
 
-function PageName({ title }) {
-  // Parameter bernama title
+export default function NotesPage () {
+  const [notes, setNotes] = useState([]);
+  const [newNote, setNewNote] = useState({ title: "", content: "" });
+  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [selectedNote, setSelectedNote] = useState(null);
+
+  const openForm = () => {
+    setIsFormOpen(true);
+  };
+
+  const closeForm = () => {
+    setIsFormOpen(false);
+    setSelectedNote(null);
+  };
+
+  const addNote = () => {
+    if (selectedNote !== null) {
+      // Update existing note
+      const updatedNotes = [...notes];
+      updatedNotes[selectedNote] = newNote;
+      setNotes(updatedNotes);
+    } else {
+      // Add new note
+      setNotes([...notes, newNote]);
+    }
+
+    setNewNote({ title: "", content: "" });
+    closeForm();
+  };
+
+  const openNoteEditor = (index) => {
+    setSelectedNote(index);
+    setNewNote(notes[index]);
+    openForm();
+  };
+
   return (
-    <div id="page_name" className="mt-2">
-      <h2>Note</h2>
-    </div>
-  );
-}
+    <Container maxWidth="md" mt={8}>
+      <h1 className="text-3xl font-bold mb-4">Sticky Notes</h1>
 
-function Content() {
-  return (
-    <div>
-      <Link
-        href="/pages/schedule"
-        className="mb-[-5px] flex justify-center hover:text-gray-400 p-2 m-[20px]"
-      >
-        <CalendarTodayIcon className="mr-2" />
-        My Schedule
-      </Link>
-      <Paper elevation={3} style={styles.paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell style={styles.topHeader}></TableCell>
-              <TableCell style={styles.topHeader}>Monday</TableCell>
-              <TableCell style={styles.topHeader}>Tuesday</TableCell>
-              <TableCell style={styles.topHeader}>Wednesday</TableCell>
-              <TableCell style={styles.topHeader}>Thursday</TableCell>
-              <TableCell style={styles.topHeader}>Friday</TableCell>
-              <TableCell style={styles.topHeader}>Saturday</TableCell>
-              <TableCell style={styles.topHeader}>Sunday</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>00.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>01.00</TableCell>
-              <TableCell>Data 1</TableCell>
-              <TableCell>Data 2</TableCell>
-              <TableCell>Data 3</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 3</TableCell>
-              <TableCell>Data 3</TableCell>
-              <TableCell></TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>02.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>03.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>04.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>05.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>06.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>07.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>08.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>09.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>10.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>11.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>12.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>13.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>14.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>15.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>16.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>17.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>18.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>19.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>20.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>21.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>22.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell style={{ ...styles.leftHeader }}>23.00</TableCell>
-              <TableCell>Data 4</TableCell>
-              <TableCell></TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-              <TableCell>Data 6</TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </Paper>
-
-      <Grid container spacing={2} className="mt-[-30px]">
-        <Grid item xs={12} sm={9}>
-          <Link
-            href="/pages/task"
-            className="mb-[-5px] flex justify-center hover:text-gray-400 p-2 m-[20px]"
-          >
-            <AssignmentTurnedInIcon className="mr-2" />
-            My Tasks
-          </Link>
-
-          <Paper elevation={3} style={styles.paperBot}>
-            <Link
-              href="#"
-              className="flex justify-center text-white bg-gray-800 hover:bg-gray-400 hover:text-gray-800"
+      {/* Display Section for Sticky Notes */}
+      <Grid container spacing={2}>
+        {notes.map((note, index) => (
+          <Grid item key={index} xs={12} sm={6} md={4} lg={3}>
+            <div
+              onClick={() => openNoteEditor(index)}
+              className={`bg-yellow-100 p-4 rounded-md border border-yellow-200 cursor-pointer ${
+                selectedNote === index ? "ring-2 ring-yellow-500" : ""
+              }`}
             >
-              <AddCircleOutlineIcon className="mr-2" />
-            </Link>
-            <Table className="h-[300px]">
-              <TableHead>
-                <TableRow>
-                  <TableCell style={styles.topHeader}>Task Name</TableCell>
-                  <TableCell style={styles.topHeader}>Deadline</TableCell>
-                  <TableCell style={styles.topHeader}>Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Task 1</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 2</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 3</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 4</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell>Task 1</TableCell>
-                  <TableCell>2023-12-01</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Details
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Paper>
-        </Grid>
-
-        <Grid item xs={12} sm={3}>
-          <Link
-            href="/pages/note"
-            className="mb-[-5px] flex justify-center hover:text-gray-400 p-2 m-[20px]"
-          >
-            <NoteAddIcon className="mr-2" />
-            Note
-          </Link>
-          <Paper elevation={3} style={styles.paperBot}>
-            <Link
-              href="#"
-              className="flex justify-center text-white bg-gray-800 hover:bg-gray-400 hover:text-gray-800"
-            >
-              <AddCircleOutlineIcon className="mr-2" />
-            </Link>
-            <Table className="h-[300px]">
-              <TableHead>
-                <TableRow>
-                  <TableCell style={styles.topHeader}>Title</TableCell>
-                  <TableCell style={styles.topHeader}>Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow>
-                  <TableCell>Note 1</TableCell>
-                  <TableCell>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      className="bg-gray-800 hover:bg-gray-600"
-                    >
-                      Edit
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </Paper>
-        </Grid>
+              <h2 className="text-lg font-semibold mb-2">{note.title}</h2>
+              <p className="truncate">{note.content}</p>
+            </div>
+          </Grid>
+        ))}
       </Grid>
-    </div>
-  );
-}
 
-export default function HomePage() {
-  return (
-    <>
-      {}
-      <div>
-        <PageName />
-        <Content />
-      </div>
-    </>
-  );
-}
+      {/* Add Sticky Note Button */}
+      <Button
+        onClick={openForm}
+        variant="contained"
+        color="warning"
+        sx={{ mt: 4 }}
+      >
+        Add Sticky Note
+      </Button>
 
-const styles = {
-  paper: {
-    height: "400px",
-    overflowY: "auto",
-    // margin: "20px",
-  },
-  paperBot: {
-    height: "300px",
-    overflowY: "auto",
-    // margin: "20px",
-  },
-  topHeader: {
-    backgroundColor: "#1F2937",
-    color: "white",
-    fontWeight: "bold",
-    position: "sticky",
-    top: 0,
-    zIndex: 2,
-  },
-  leftHeader: {
-    backgroundColor: "#1F2937",
-    color: "white",
-    position: "sticky",
-    zIndex: 1,
-    left: 0,
-  },
+      {/* Popup Form Modal */}
+      <Dialog open={isFormOpen} onClose={closeForm} fullWidth maxWidth="md">
+        <DialogTitle>
+          {selectedNote !== null ? "Edit Note" : "Add New Note"}
+        </DialogTitle>
+        <DialogContent>
+          <TextField
+            label="Title"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            value={newNote.title}
+            onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
+          />
+          <TextareaAutosize
+            aria-label="Content"
+            placeholder="Content"
+            minRows={4}
+            maxRows={8}
+            style={{ width: "100%", resize: "none", padding: "8px" }}
+            value={newNote.content}
+            onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={closeForm}>Cancel</Button>
+          <Button onClick={addNote} variant="contained" color="success">
+            {selectedNote !== null ? "Update" : "Add"} Sticky Note
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Container>
+  );
 };
