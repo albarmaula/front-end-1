@@ -21,6 +21,8 @@ import Container from "@mui/material/Container";
 import CssBaseline from "@mui/material/CssBaseline";
 import { useState } from "react";
 import Paper from "@mui/material/Paper";
+import bcrypt from "bcryptjs";
+import axios from "axios";
 
 export default function SignUpPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -33,13 +35,36 @@ export default function SignUpPage() {
     event.preventDefault();
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+  
+    const formData = new FormData(event.target);
+    const hashedPassword = await hashPassword(formData.get("password"));
+  
+    const userData = {
+      first_name: formData.get("firstName"),
+      last_name: formData.get("lastName"),
+      email: formData.get("email"),
+      password: hashedPassword,
+    };
+  
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    };
+  
+    try {
+      const response = await axios.post("http://localhost:3000/api/user", userData, config);
+      console.log("User successfully created:", response.data);
+    } catch (error) {
+      console.error("Error creating user:", error.response.data);
+    }
+  };  
+
+  const hashPassword = async (password) => {
+    const saltRounds = 10;
+    return bcrypt.hash(password, saltRounds);
   };
 
   const linkStyle = {
@@ -182,7 +207,7 @@ export default function SignUpPage() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               className="bg-gray-800 hover:bg-gray-600"
-              href="/pages/home"
+              // href="/pages/home"
             >
               Sign Up
             </Button>
